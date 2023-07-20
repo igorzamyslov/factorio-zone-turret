@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "factorio-zone-turret"
+version = "0.1.0"
+description = ""
+authors = ["Igor Zamyslov <zamyslovigor@gmail.com>"]
+readme = "README.md"
+packages = [{include = "factorio_zone_turret"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
