@@ -1,11 +1,17 @@
-from gpiozero import LED
+from gpiozero import RGBLED
+
+from colorzero import Color
+
+led = RGBLED(17, 27, 22)
 
 
-def led_on():
-    led = LED(17)
-    led.on()
+def turn_yellow():
+    led.color = Color.from_rgb_bytes(255, 30, 0)
 
 
-def led_off():
-    led = LED(17)
-    led.off()
+def turn_green():
+    led.color = Color.from_rgb_bytes(5, 60, 0)
+
+
+def turn_red():
+    led.color = Color.from_rgb_bytes(255, 0, 0)

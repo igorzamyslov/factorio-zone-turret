@@ -1,0 +1,4 @@
+[submodule "factorio_zone_turret/fz_manager"]
+	path = factorio_zone_turret/fz_manager
+	url = git@github.com:igorzamyslov/FZ-Manager.git
+	branch = main

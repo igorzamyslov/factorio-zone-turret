@@ -1,0 +1,14 @@
+certifi==2023.5.7
+charset-normalizer==2.0.12
+colorama==0.4.6
+colorzero==2.0
+commonmark==0.9.1
+gpiozero==1.6.2
+idna==3.4
+Pygments==2.15.1
+python-dotenv==1.0.0
+requests==2.31.0
+requests-toolbelt==1.0.0
+urllib3==1.26.16
+wcwidth==0.2.6
+websockets==11.0.3
