@@ -2,6 +2,7 @@ import re
 from typing import Optional
 
 from factorio_zone_turret import colors
+from factorio_zone_turret.config import config
 from factorio_zone_turret.fz_manager.fz_manager.factorio_zone_api import FZClient, ServerStatus
 from factorio_zone_turret.pi_utils import change_led_color, pulse_led
 
@@ -62,3 +63,13 @@ def handle_hosting_started(log: str):
     if re.search(r"Hosting game at IP ADDR", log):
         hosting_started = True
         change_led_color(colors.BLUE)
+
+
+def create_button_press_handler(client: FZClient):
+    """ Create handler for the button press which starts the server """
+    def handle_button_press():
+        """ Start the server """
+        client.start_instance(region=config.FZ_SERVER_REGION,
+                              version=config.FZ_SERVER_VERSION,
+                              save=config.FZ_SERVER_SAVE)
+    return handle_button_press

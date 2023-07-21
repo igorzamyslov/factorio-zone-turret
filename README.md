@@ -1,6 +1,7 @@
 # Factorio.zone Turret
 
-The project uses Raspberry PI to track the status of the `factorio.zone` server:
+The project uses Raspberry PI to be able to start and track the status of the `factorio.zone`
+server:
 
 | Color           | Status                                      |
 |-----------------|---------------------------------------------|
@@ -15,11 +16,14 @@ The project uses Raspberry PI to track the status of the `factorio.zone` server:
 
 ### Raspberry Pi
 
-Connect RGB LED to the following control pins:
-
-- Red: GPIO17
-- Green: GPIO27
-- Blue: GPIO22
+1. Connect RGB LED to the following control pins:
+    - Red: `GPIO17`
+    - Green: `GPIO27`
+    - Blue: `GPIO22`
+    - Ground
+1. Connect button to:
+    - `GPIO2`
+    - Ground
 
 ### Repository
 
