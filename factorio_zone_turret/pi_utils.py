@@ -33,31 +33,11 @@ except BadPinFactory:
     led = _get_mock_led()
 
 
-def turn_yellow():
-    led.color = colors.YELLOW
+def change_led_color(color: colors.Color):
+    led.color = color
 
 
-def pulse_yellow():
+def pulse_led(from_color: colors.Color, to_color: colors.Color):
     led.pulse(fade_in_time=.5, fade_out_time=.5,
-              on_color=colors.YELLOW, off_color=colors.DARK_YELLOW,
-              background=True)
-
-
-def turn_green():
-    led.color = colors.GREEN
-
-
-def pulse_green():
-    led.pulse(fade_in_time=.5, fade_out_time=.5,
-              on_color=colors.GREEN, off_color=colors.DARK_GREEN,
-              background=True)
-
-
-def turn_red():
-    led.color = colors.RED
-
-
-def pulse_red():
-    led.pulse(fade_in_time=.5, fade_out_time=.5,
-              on_color=colors.RED, off_color=colors.DARK_RED,
+              on_color=from_color, off_color=to_color,
               background=True)

@@ -6,8 +6,9 @@ The project uses Raspberry PI to track the status of the `factorio.zone` server:
 |-----------------|---------------------------------------------|
 | RED             | server is stopped                           |
 | BLINKING YELLOW | server is starting                          |
-| YELLOW          | server is running, no players on the server |
-| GREEN           | server is running, players connected        |
+| BLUE            | server is running, no players on the server |
+| BLINKING GREEN  | server is running, player connecting        |
+| GREEN           | server is running, players on the server    |
 | BLINKING RED    | server is stopping                          |
 
 ## Initial setup

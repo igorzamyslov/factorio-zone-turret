@@ -1,11 +1,11 @@
 import asyncio
 import re
 
+from factorio_zone_turret import colors
 from factorio_zone_turret.config import config
 from factorio_zone_turret.fz_manager.fz_manager.factorio_zone_api import FZClient, ServerStatus
 
-from factorio_zone_turret.pi_utils import pulse_red, pulse_yellow, \
-    turn_green, turn_red, turn_yellow
+from factorio_zone_turret.pi_utils import change_led_color, pulse_led
 
 from typing import Optional
 
@@ -21,36 +21,40 @@ def handle_players_count(log: str):
     if current_status != ServerStatus.RUNNING:
         return
     # check if the player count changes
-    if re.search(r"\[JOIN] .*? joined the game", log):
+    if re.search(r"peerID.*?newState\(ConnectedWaitingForMap\)", log):
+        pulse_led(colors.BLUE, colors.DARK_BLUE)
         current_players += 1
+    elif re.search(r"peerID.*?newState(InGame)", log):
+        change_led_color(colors.GREEN)
     elif re.search(r"\[LEAVE] .*? left the game", log):
         current_players -= 1
     else:
         return
 
     if current_players:
-        turn_green()
+        change_led_color(colors.GREEN)
     else:
-        turn_yellow()
+        change_led_color(colors.BLUE)
 
 
 def handle_server_status_change(*_):
-    global current_status
+    global current_status, current_players
     if current_status == client.server_status:
         return
 
     current_status = client.server_status
+    current_players = 0  # reset players count on status change
     if current_status == ServerStatus.OFFLINE:
-        turn_red()
+        change_led_color(colors.RED)
     elif current_status == ServerStatus.STARTING:
-        pulse_yellow()
+        pulse_led(colors.YELLOW, colors.DARK_YELLOW)
     elif current_status == ServerStatus.RUNNING:
-        turn_yellow()
+        change_led_color(colors.BLUE)
     elif current_status == ServerStatus.STOPPING:
-        pulse_red()
+        pulse_led(colors.RED, colors.DARK_RED)
 
 
-handle_server_status_change()
+change_led_color(colors.RED)
 client.add_message_listener(handle_server_status_change)
 client.add_logs_listener(handle_players_count)
 asyncio.run(client.connect())
