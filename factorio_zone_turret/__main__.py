@@ -58,7 +58,7 @@ def handle_hosting_started(log: str):
     - The LED is kept in STARTING state until we get the "hosting" message
     """
     global current_status, hosting_started
-    if hosting_started or current_status != ServerStatus.RUNNING:
+    if hosting_started or current_status not in (ServerStatus.STARTING, ServerStatus.RUNNING):
         return
     if re.search(r"Hosting game at IP ADDR", log):
         hosting_started = True
