@@ -8,3 +8,5 @@ RED = Color.from_rgb_bytes(255, 0, 0)
 DARK_RED = Color.from_rgb_bytes(25, 0, 0)
 BLUE = Color.from_rgb_bytes(0, 10, 80)
 DARK_BLUE = Color.from_rgb_bytes(0, 1, 8)
+WHITE = Color.from_rgb_bytes(240, 80, 80)
+DARK_WHITE = Color.from_rgb_bytes(30, 10, 10)  # yes, dark white
