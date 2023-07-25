@@ -33,7 +33,7 @@ logo = """  ______ ______  _______                  _
 """
 print(f"{bcolors.ORANGE}{logo}{bcolors.ENDC}")
 
-logging.info("Starting server...")
+logging.info("Client ready")
 while True:
     try:
         asyncio.run(client.connect())
