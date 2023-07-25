@@ -20,6 +20,7 @@ client.add_message_listener(handle_server_status_change)
 client.add_logs_listener(handle_players_count)
 client.add_logs_listener(handle_hosting_started)
 
+logging.info("Welcome the the Factorio.zone Turret")
 while True:
     try:
         asyncio.run(client.connect())
