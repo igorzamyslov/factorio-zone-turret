@@ -1,4 +1,5 @@
 import asyncio
+import logging
 
 from factorio_zone_turret import colors
 from factorio_zone_turret.config import config
@@ -19,4 +20,8 @@ client.add_message_listener(handle_server_status_change)
 client.add_logs_listener(handle_players_count)
 client.add_logs_listener(handle_hosting_started)
 
-asyncio.run(client.connect())
+while True:
+    try:
+        asyncio.run(client.connect())
+    except Exception as error:
+        logging.warning("Reconnecting due to the following exception: %s", error, exc_info=True)
