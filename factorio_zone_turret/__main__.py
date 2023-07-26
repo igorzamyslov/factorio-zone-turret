@@ -20,7 +20,20 @@ client.add_message_listener(handle_server_status_change)
 client.add_logs_listener(handle_players_count)
 client.add_logs_listener(handle_hosting_started)
 
-logging.info("Welcome the the Factorio.zone Turret")
+class bcolors:  
+    ORANGE =  '\033[38;5;202m'
+    ENDC      = '\033[0m'
+
+logo = """  ______ ______  _______                  _   
+ |  ____|___  / |__   __|                | |  
+ | |__     / /     | |_   _ _ __ _ __ ___| |_ 
+ |  __|   / /      | | | | | '__| '__/ _ \ __|
+ | |     / /__     | | |_| | |  | | |  __/ |_ 
+ |_|    /_____|    |_|\__,_|_|  |_|  \___|\__|
+"""
+print(f"{bcolors.ORANGE}{logo}{bcolors.ENDC}")
+
+logging.info("Client ready")
 while True:
     try:
         asyncio.run(client.connect())
