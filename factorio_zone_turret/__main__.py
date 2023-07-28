@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from time import sleep
 
 from factorio_zone_turret import colors
 from factorio_zone_turret.config import config
@@ -8,7 +9,7 @@ from factorio_zone_turret.handlers import create_button_press_handler, \
     create_server_status_change_handler, handle_hosting_started, handle_players_count
 from factorio_zone_turret.pi_utils import button, pulse_led
 
-pulse_led(colors.DARK_WHITE, colors.WHITE)  # Initial state
+pulse_led(colors.DARK_WHITE, colors.WHITE)
 client = FZClient(token=config.FZ_TOKEN)
 
 # Create button handlers
@@ -39,3 +40,5 @@ while True:
         asyncio.run(client.connect())
     except Exception as error:
         logging.warning("Reconnecting due to the following exception: %s", error, exc_info=True)
+        pulse_led(colors.DARK_WHITE, colors.WHITE)
+        sleep(5)

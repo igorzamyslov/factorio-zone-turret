@@ -45,7 +45,7 @@ def handle_players_count(log: str):
         current_players += 1
     elif re.search(r"peerID.*?newState\(InGame\)", log):
         change_led_color(colors.GREEN)
-    elif re.search(r"\[LEAVE] .*? left the game", log):
+    elif re.search(r"removing peer", log):
         current_players = max(current_players - 1, 0)  # fail-safe
         if current_players == 0:
             change_led_color(colors.BLUE)
