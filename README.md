@@ -34,3 +34,16 @@ server:
 ## Running
 
 Start the server with the following command: `python -m factorio_zone_turret`
+
+## Auto-start
+
+Open crontab: `crontab -e` \
+Add the following line there:
+```
+@reboot sleep 90 && cd ~/factorio-zone-turret && git pull && python -m factorio_zone_turret >~/log.txt 2>&1
+```
+which:
+- waits until the system is fully booted
+- navigates to the repository folder
+- pulls the latest version of the code
+- starts the server, redirecting all the logs to the `log.txt` in the home folder
