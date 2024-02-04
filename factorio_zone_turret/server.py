@@ -76,8 +76,8 @@ class FZTurretServer:
             elif re.search(r"peerID.*?newState\(InGame\)", log):
                 change_led_color(colors.GREEN)
             elif re.search(r"removing peer", log):
-                current_players = max(self.current_players - 1, 0)  # fail-safe
-                if current_players == 0:
+                self.current_players = max(self.current_players - 1, 0)  # fail-safe
+                if self.current_players == 0:
                     change_led_color(colors.BLUE)
 
         return handle_players_count
