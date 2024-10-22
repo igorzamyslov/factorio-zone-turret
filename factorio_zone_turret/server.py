@@ -17,6 +17,7 @@ class FZTurretServer:
 
     def __init__(self):
         logging.info("Initializing FZ Turret server")
+        logging.info(config)
         pulse_led(colors.DARK_WHITE, colors.WHITE)
         self.current_status = None
         self.current_players = 0
@@ -107,6 +108,7 @@ class FZTurretServer:
             """ Start the server """
             self.client.start_instance(region=config.FZ_SERVER_REGION,
                                        version=config.FZ_SERVER_VERSION,
-                                       save=config.FZ_SERVER_SAVE)
+                                       save=config.FZ_SERVER_SAVE,
+                                       ipv6=config.FZ_SERVER_IPV6)
 
         return handle_button_press
