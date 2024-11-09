@@ -69,17 +69,21 @@ class FZTurretServer:
             """ Handle color based on the players count """
             # check if the server is running
             if self.current_status != ServerStatus.RUNNING:
+                logging.info("Handling players count: self.current_status != ServerStatus.RUNNING")
                 return
             # check if the player count changes
             if re.search(r"peerID.*?newState\(ConnectedWaitingForMap\)", log):
                 pulse_led(colors.GREEN, colors.DARK_GREEN)
                 self.current_players += 1
+                logging.info(f"Handling players count: Changing led color to blinking, players +1, new count: {self.current_players}")
             elif re.search(r"peerID.*?newState\(InGame\)", log):
                 change_led_color(colors.GREEN)
+                logging.info(f"Handling players count: Changing led color to static")
             elif re.search(r"removing peer", log):
                 self.current_players = max(self.current_players - 1, 0)  # fail-safe
                 if self.current_players == 0:
                     change_led_color(colors.BLUE)
+                logging.info(f"Handling players count: Removing peer, players -1, new count: {self.current_players}")
 
         return handle_players_count
 
